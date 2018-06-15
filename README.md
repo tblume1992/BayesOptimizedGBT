@@ -14,7 +14,7 @@ BayesOptimizedBoosting(X,y,rounds = 10, Classification = False, score= 'neg_mean
   
   score: The metric to judge the CV by and the metric that the Bayesian Optimization is trying to maximize.
   
-  ***There are nummerous scores that are supported, for a list simply run BayesOptimizedGBT.show_scores()***
+  ***There are numerous scores that are supported, for a list simply run BayesOptimizedGBT.show_scores()***
   
   kfold: The number of folds to create for cross validation, default is 5.
   

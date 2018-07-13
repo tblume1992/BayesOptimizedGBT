@@ -62,24 +62,23 @@ def BayesOptimizedBoosting(X,y,rounds = 10, Classification = False, score= 'neg_
             ).mean()
             return val
     
-    if __name__ == "__main__":
-        gp_params = {"alpha": 1e-5}
+    gp_params = {"alpha": 1e-5}
     
     
     
-        xgbcBO = BayesianOptimization(
-            xgbcv,
-            {'num_round': (10,250),
-            'subsample': (0.5,0.999),
-            'eta': (0.1,.3),
-            'max_depth': (3,8)}
-        )
-    
-    
-        print('-' * 53)
-        xgbcBO.maximize(n_iter=rounds, **gp_params)
-    
-        print('-' * 53)
-        print('Final Results')
-        print('RFC: %f' % xgbcBO.res['max']['max_val'])
-        print(pd.DataFrame(xgbcBO.res['max']['max_params'], index =['Parameters']))
+    xgbcBO = BayesianOptimization(
+        xgbcv,
+        {'num_round': (10,250),
+        'subsample': (0.5,0.999),
+        'eta': (0.1,.3),
+        'max_depth': (3,8)}
+    )
+
+
+    print('-' * 53)
+    xgbcBO.maximize(n_iter=rounds, **gp_params)
+
+    print('-' * 53)
+    print('Final Results')
+    print('RFC: %f' % xgbcBO.res['max']['max_val'])
+    print(pd.DataFrame(xgbcBO.res['max']['max_params'], index =['Parameters']))

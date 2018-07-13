@@ -32,12 +32,8 @@ def show_scores():
     comment = ['-','-','-','-','-','-']
     for i, (score, comment) in enumerate(zip(score, comment)):
             print(fmt.format(i, score,'' ))
-def BayesOptimizedBoosting(X,y,rounds = 10, Classification = False, score= 'neg_mean_squared_error', kfold = 5):
-	 
-    
-    
+def BayesOptimizedBoosting(X,y,rounds = 10, Classification = False, score= 'neg_mean_squared_error', kfold = 5):    
     if Classification is True:
-
         def xgbcv(num_round, subsample, eta, max_depth):
             val = cross_val_score(
                 XGBC(num_round=int(num_round),
@@ -63,9 +59,6 @@ def BayesOptimizedBoosting(X,y,rounds = 10, Classification = False, score= 'neg_
             return val
     
     gp_params = {"alpha": 1e-5}
-    
-    
-    
     xgbcBO = BayesianOptimization(
         xgbcv,
         {'num_round': (10,250),
@@ -76,6 +69,7 @@ def BayesOptimizedBoosting(X,y,rounds = 10, Classification = False, score= 'neg_
 
 
     print('-' * 53)
+	
     xgbcBO.maximize(n_iter=rounds, **gp_params)
 
     print('-' * 53)
